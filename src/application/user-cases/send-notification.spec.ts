@@ -1,17 +1,23 @@
-import { SendNotification } from "./send-notification";
+import { Notification } from '../entities/notification';
+import { NotificationRepository } from '../repository/notification-repository';
+import { SendNotification } from './send-notification';
 
+const notRep = {
+  async create(notification: Notification) {
+    console.log(notification);
+  },
+};
 
 describe('Send-Notification', () => {
-    it('should be able to send a notification', async () => {
+  it('should be able to send a notification', async () => {
+    const sendNotification = new SendNotification(notRep);
 
-        const sendNotification = new SendNotification();
+    const { notification } = await sendNotification.execute({
+      content: 'conteudo',
+      category: 'category',
+      recipientId: 'recipientId',
+    });
 
-        const { notification } = await sendNotification.execute({
-            content: 'conteudo',
-            category: 'category',
-            recipientId: 'recipientId',
-        });
-
-        expect(sendNotification).toBeTruthy();
-    })
-})
+    expect(sendNotification).toBeTruthy();
+  });
+});
