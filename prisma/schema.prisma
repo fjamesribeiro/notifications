@@ -1,5 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
+// hdghkjhgjksahk
 
 generator client {
   provider = "prisma-client-js"
@@ -15,6 +16,7 @@ model Notification {
   recipientId String
   content     String
   category    String
+  canceledAt  DateTime?
   readAt      DateTime?
   createdAt   DateTime  @default(now())
 
